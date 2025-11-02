@@ -12,8 +12,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// MongoDB Connection
-mongoose.connect("mongodb://localhost:27017/msd_project", {
+// ✅ Direct MongoDB Atlas connection (for submission)
+mongoose.connect("mongodb+srv://harshinivemula164:Harshinii@cluster0.pzflbtt.mongodb.net/msd_project?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -82,5 +82,5 @@ app.get("/event", async (req, res) => {
 });
 
 // ===================== START SERVER =====================
-const PORT = 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
